@@ -1,37 +1,49 @@
-input {
-    margin-bottom: 5px;
-}
-
-.col-sm-8{
-    margin-bottom: 5px;
-}
 body {
     padding-top: 60px;
     padding-bottom: 60px;
 }
+
+input.form-control {
+    margin-bottom: 5px;
+}
+
+textarea {
+    margin-bottom: 5px;
+}
+
+.col-sm-8 {
+    margin-bottom: 5px;
+}
+
 ::-webkit-input-placeholder {
     font-style: italic;
 }
+
 :-moz-placeholder {
     font-style: italic;
 }
+
 ::-moz-placeholder {
     font-style: italic;
 }
+
 :-ms-input-placeholder {
     font-style: italic;
 }
+
 .navbar-default {
-    background-color: mediumblue;
+    background-color: dodgerblue;
 
 }
+
 .navbar-default2 {
     background-color: whitesmoke;
 
 }
 
-.glyphicon .glyphicon-user{
+.white-hyperlinks {
     color: white;
+
 }
 
 .navbar-default .navbar-brand {
@@ -42,7 +54,7 @@ body {
     color: white;
 }
 
-.jga-toolbar {
+.rp-toolbar {
     position: absolute;
     right: 15px;
     background-color: white;
