@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../css/style.css" rel="stylesheet"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Widget List</title>
-</head>
-<body>
-
 <nav class="navbar navbar-default2 navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../../page/templates/page-list.view.client.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="widget-chooser.view.client.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -28,85 +17,29 @@
 </nav>
 
 <div class="container-fluid">
-    <div>
-        <div class="rp-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a>
-                <span class="glyphicon glyphicon-align-justify"></span></a>
-        </div>
-        <h1>GIZMODO</h1>
-    </div>
-    <div>
-        <div class="rp-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a>
-                <span class="glyphicon glyphicon-align-justify"></span></a>
-        </div>
-        <h3>New Measurements of the Universe Expanding Tell a Confusing Story</h3>
-    </div>
-    <div>
-        <div class="rp-toolbar">
-            <a href="widget-image.view.client.html">
+    <div ng-repeat="widget in model.widgets">
+        <div ng-switch="widget.widgetType">
+            <div class="rp-toolbar">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+            <div ng-switch-when="HEADER">
+                <h1 ng-if="widget.size == 1">{{widget.text}}</h1>
+                <h2 ng-if="widget.size == 2">{{widget.text}}</h2>
+                <h3 ng-if="widget.size == 3">{{widget.text}}</h3>
+                <h4 ng-if="widget.size == 4">{{widget.text}}</h4>
+                <h5 ng-if="widget.size == 5">{{widget.text}}</h5>
+                <h6 ng-if="widget.size == 6">{{widget.text}}</h6>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <img ng-src="{{widget.url}}" width="{{widget.width}}"/>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <iframe width="100%" ng-src="{{model.doYouTrustUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
-
-        <img width="100%"
-             src="https://i.kinja-img.com/gawker-media/image/upload/s--UE7cu6DV--/c_scale,fl_progressive,q_80,w_800/xoo0evqxzxrrmrn4ayoq.jpg">
-    </div>
-    <div>
-        <div class="rp-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <p>At the Environmental Protection Agency, it’s typical for an incoming administration to implement a
-            realignment of sorts—with some grants or contracts, for instance, being frozen temporarily—but a decision by
-            President Donald Trump’s staff to <a
-                    href="http://www.latimes.com/politics/washington/la-na-trailguide-updates-trump-administration-orders-media-1485281190-htmlstory.html"
-                    target="_blank" rel="noopener">order a total media blackout</a>, as well as ban any new spending,
-            has left some employees rattled. <br>
-        </p>
-    </div>
-    <div>
-        <div class="rp-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a>
-                <span class="glyphicon glyphicon-align-justify"></span></a>
-        </div>
-        <h3>Manchester United thrash Arsenal 8-2 at Old Trafford</h3>
-    </div>
-
-    <div>
-        <div class="rp-toolbar">
-            <a href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <iframe width="100%" height="600" src="https://www.youtube.com/embed/i3W-04fbL78" frameborder="0"
-                allowfullscreen></iframe>
-    </div>
-    <div>
-        <div class="rp-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <p>With Rooney's hattrick, Manchester United inflicted total humiliation on Arsenal and their embattled manager
-            Arsene Wenger with a brutal victory at Old Trafford.
-        </p>
     </div>
 </div>
 
@@ -123,9 +56,7 @@
                 <span class="glyphicon glyphicon-user"></span></a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"></a>
+            <a class="navbar-brand" href="#/user/{{model.userId}}"></a>
         </div>
     </div>
 </nav>
-</body>
-</html>

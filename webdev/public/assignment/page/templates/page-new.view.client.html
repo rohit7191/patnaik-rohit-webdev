@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a ng-click="model.createPage(page)">
+                <a ng-click="model.createPage(thisPage)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -49,10 +49,10 @@
         </div>
         <div class="col-xs-12 col-sm-8 pull-right">
             <label for="name">Name</label>
-            <input ng-model="page.name" class="form-control" id="name" placeholder="Name">
+            <input ng-model="thisPage.name" class="form-control" id="name" placeholder="Name">
 
             <label for="title">Title</label>
-            <textarea ng-model="page.description" rows="5" class="form-control" id="title" placeholder="Title"></textarea>
+            <textarea ng-model="thisPage.description" rows="5" class="form-control" id="title" placeholder="Title"></textarea>
         </div>
     </div>
 </div>

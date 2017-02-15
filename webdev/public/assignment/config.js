@@ -5,6 +5,11 @@
 
     function configuration($routeProvider, $locationProvider) {
         $routeProvider
+            .when("default", {
+                templateUrl: "user/templates/login.view.client.html",
+                controller: "LoginController",
+                controllerAs: "model"
+            })
             .when("/", {
                 templateUrl: "user/templates/login.view.client.html",
                 controller: "LoginController",
@@ -53,6 +58,21 @@
             .when("/user/:uid/website/:wid/page/:pid", {
                 templateUrl: 'page/templates/page-edit.view.client.html',
                 controller: "PageEditController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget", {
+                templateUrl: 'widget/templates/widget-list.view.client.html',
+                controller: "WidgetListController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget/new", {
+                templateUrl: 'widget/templates/widget-chooser.view.client.html',
+                controller: "WidgetNewController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
+                templateUrl: 'widget/templates/widget-edit.view.client.html',
+                controller: "WidgetEditController",
                 controllerAs: "model"
             });
 

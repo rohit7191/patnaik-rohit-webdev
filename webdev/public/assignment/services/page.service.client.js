@@ -9,8 +9,8 @@
     function PageService() {
         var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
+            { "_id": "432", "name": "Post 2", "websiteId": "567", "description": "Lorem" },
+            { "_id": "543", "name": "Post 3", "websiteId": "567", "description": "Lorem" }
         ];
 
         var api = {
@@ -28,19 +28,19 @@
             pages.push(page);
         }
 
-        function findPageByWebsiteId(wid) {
+        function findPageById(pageId) {
             for(var p in pages) {
-                if(wid === pages[p].websiteId) {
+                if(pageId == pages[p]._id) {
                     return angular.copy(pages[p]);
                 }
             }
             return null;
         }
 
-        function findPageById(pageId) {
+        function findPageByWebsiteId(wid) {
             var page = [];
             for(var p in pages) {
-                if(pageId === pages[p]._id) {
+                if(wid == pages[p].websiteId) {
                     page.push(pages[p]);
                 }
             }

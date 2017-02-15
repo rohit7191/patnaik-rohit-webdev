@@ -22,11 +22,11 @@
         var pages = PageService.findPageByWebsiteId(websiteId);
         vm.pages = pages;
 
-        var page = PageService.findPageById(pageId);
-        vm.page = page;
+        var thisPage = PageService.findPageById(pageId);
+        vm.thisPage = thisPage;
 
-        function updatePage(newPage) {
-            var page = PageService.updatePage(vm.pageId, newPage);
+        function updatePage() {
+            var page = PageService.updatePage(pageId, thisPage);
             if(page != null) {
                 $location.url('/user/' + userId + "/website/" + websiteId + "/page");
             } else {

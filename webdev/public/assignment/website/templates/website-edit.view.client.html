@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="white-hyperlinks" ng-click="model.updateWebsite(model.websiteId)">
+                <a class="white-hyperlinks" ng-click="model.updateWebsite()">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -50,13 +50,13 @@
         </div>
         <div class="col-xs-12 col-sm-8 pull-right">
             <label for="name">Website Name</label>
-            <input ng-model="model.website.name"
+            <input ng-model="model.thisWebsite.name"
                    class="form-control"
                    id="name"
                    placeholder="Website Name">
 
             <label for="description">Description</label>
-            <textarea ng-model="model.website.description"
+            <textarea ng-model="model.thisWebsite.description"
                     rows="5"
                       class="form-control"
                       id="description"

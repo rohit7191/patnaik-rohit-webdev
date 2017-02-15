@@ -8,14 +8,12 @@
 
     function WebsiteNewController($routeParams, WebsiteService, $location) {
         var vm = this;
-
-        // event handlers
         vm.createWebsite = createWebsite;
 
         var userId = $routeParams.uid;
         vm.userId = userId;
-        var websiteId = $routeParams.wid;
-
+        var websiteId = $routeParams.wid
+        vm.websiteId = websiteId;
         var websites = WebsiteService.findWebsitesByUser(userId);
         vm.websites = websites;
 
@@ -23,7 +21,7 @@
         vm.website = website;
 
         function createWebsite(newWebsite) {
-            WebsiteService.createWebsite(vm.userId,newWebsite);
+            WebsiteService.createWebsite(userId,newWebsite);
             $location.url('/user/' + userId + "/website");
 
         }
