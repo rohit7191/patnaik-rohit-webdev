@@ -65,10 +65,10 @@
             }
         }
 
-        function createWidget(pageId, widget) {
-            widget.pageId = pageId;
-            widget._id = (new Date()).getTime();
+        function createWidget(pageId, type) {
+            var widget = { "_id": (new Date()).getTime(), "widgetType": type, "pageId": pageId, "size": 0, "text": ""};
             widgets.push(widget);
+            return widget;
         }
     }
 })();

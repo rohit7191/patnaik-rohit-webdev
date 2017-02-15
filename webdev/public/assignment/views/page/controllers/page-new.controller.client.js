@@ -13,12 +13,16 @@
         vm.createPage = createPage;
 
         var userId = $routeParams.uid;
-        vm.userId = userId;
-        var websiteId = $routeParams.wid;
-        vm.websiteId = websiteId;
-        var pages = PageService.findPageByWebsiteId(websiteId);
-        vm.pages = pages;
 
+        var websiteId = $routeParams.wid;
+
+        function init(){
+            vm.userId = userId;
+            vm.websiteId = websiteId;
+            var pages = PageService.findPageByWebsiteId(websiteId);
+            vm.pages = pages;
+        }
+        init();
 
         function createPage(newPage) {
             PageService.createPage(websiteId,newPage);

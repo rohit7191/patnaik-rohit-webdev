@@ -15,15 +15,19 @@
         var userId = $routeParams.uid;
         var websiteId = $routeParams.wid;
         var pageId = $routeParams.pid;
-        vm.userId = userId;
-        vm.websiteId = websiteId;
-        vm.pageId = pageId;
 
-        var pages = PageService.findPageByWebsiteId(websiteId);
-        vm.pages = pages;
+        function init() {
+            vm.userId = userId;
+            vm.websiteId = websiteId;
+            vm.pageId = pageId;
+            var pages = PageService.findPageByWebsiteId(websiteId);
+            vm.pages = pages;
 
-        var thisPage = PageService.findPageById(pageId);
-        vm.thisPage = thisPage;
+            var thisPage = PageService.findPageById(pageId);
+            vm.thisPage = thisPage;
+        }
+        init();
+
 
         function updatePage() {
             var page = PageService.updatePage(pageId, thisPage);

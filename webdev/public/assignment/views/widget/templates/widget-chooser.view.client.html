@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Choose Widget</a>
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">Choose Widget</a>
         </div>
     </div>
 </nav>
@@ -15,42 +15,42 @@
 
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="widget-heading.view.client.html">
+            <a href ng-click="model.createWidget('HEADER')">
                 Header
             </a>
         </li>
         <li class="list-group-item">
-            <a href="widget-image.view.client.html">
+            <a href ng-click="model.createWidget('IMAGE')">
                 Image
             </a>
         </li>
         <li class="list-group-item">
-            <a href="widget-youtube.view.client.html">
+            <a href ng-click="model.createWidget('IMAGE')">
                 YouTube
             </a>
         </li>
         <li class="list-group-item">
-            <a href="../widget/widget-chooser.view.client.html">
+            <a href ng-click="model.createWidget('HEADER')">
                 Label
             </a>
         </li>
         <li class="list-group-item">
-            <a href="../widget/widget-chooser.view.client.html">
+            <a href ng-click="model.createWidget('HEADER')">
                 Clock
             </a>
         </li>
         <li class="list-group-item">
-            <a href="../widget/widget-chooser.view.client.html">
+            <a href ng-click="model.createWidget('HEADER')">
                 Text Input
             </a>
         </li>
         <li class="list-group-item">
-            <a href="../widget/widget-chooser.view.client.html">
+            <a href ng-click="model.createWidget('HEADER')">
                 Data Table
             </a>
         </li>
         <li class="list-group-item">
-            <a href="../widget/widget-chooser.view.client.html">
+            <a href ng-click="model.createWidget('HEADER')">
                 Repeater
             </a>
         </li>
@@ -62,7 +62,7 @@
 <nav class="navbar navbar-default2 navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span></a>
         </div>
         <div class="navbar-header">

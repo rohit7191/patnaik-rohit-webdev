@@ -8,16 +8,21 @@
 
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
-        vm.doYouTrustUrl = doYouTrustUrl;
+
         userId = $routeParams.uid;
         websiteId = $routeParams.wid;
         pageId = $routeParams.pid;
-        vm.userId = userId;
-        vm.websiteId = websiteId;
-        vm.pageId = pageId;
 
-        var widgets = WidgetService.findWidgetsByPageId(pageId);
-        vm.widgets = widgets;
+
+        function init() {
+            vm.doYouTrustUrl = doYouTrustUrl;
+            vm.userId = userId;
+            vm.websiteId = websiteId;
+            vm.pageId = pageId;
+            var widgets = WidgetService.findWidgetsByPageId(pageId);
+            vm.widgets = widgets;
+        }
+        init();
 
         function doYouTrustUrl(url) {
             var baseUrl = "https://www.youtube.com/embed/";
