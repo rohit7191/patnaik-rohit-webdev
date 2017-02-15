@@ -1,39 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Edit Page</title>
-</head>
-<body>
-
 <nav class="navbar navbar-default2 navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="page-list.html">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="page-new.html">
+                <a href="#/user/{{model.userId}}/website/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Pages</a>
+                <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">Pages</a>
             </div>
         </div>
         <div class="col-xs-12 col-sm-8 pull-right">
             <div class="navbar-text pull-left hidden-md hidden-lg hidden-sm">
-                <a href="page-list.html">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="page-list.html">
+                <a ng-click="model.updatePage(page)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -49,42 +38,42 @@
         <div class="col-sm-4 hidden-xs border">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="../widget/widget-list.html">
+                    <a href="../../widget/templates/widget-list.view.client.html">
                         Blog Post
                     </a>
-                    <a href="../page/page-edit.html" class="pull-right">
+                    <a href="../page/page-edit.view.client.html" class="pull-right">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="../widget/widget-list.html">
+                    <a href="../../widget/templates/widget-list.view.client.html">
                         Blogs
                     </a>
-                    <a href="../page/page-edit.html" class="pull-right">
+                    <a href="../page/page-edit.view.client.html" class="pull-right">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="../widget/widget-list.html">
+                    <a href="../../widget/templates/widget-list.view.client.html">
                         Home
                     </a>
-                    <a href="../page/page-edit.html" class="pull-right">
+                    <a href="../page/page-edit.view.client.html" class="pull-right">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="../widget/widget-list.html">
+                    <a href="../../widget/templates/widget-list.view.client.html">
                         About
                     </a>
-                    <a href="../page/page-edit.html" class="pull-right">
+                    <a href="../page/page-edit.view.client.html" class="pull-right">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="../widget/widget-list.html">
+                    <a href="../../widget/templates/widget-list.view.client.html">
                         Contact Us
                     </a>
-                    <a href="../page/page-edit.html" class="pull-right">
+                    <a href="../page/page-edit.view.client.html" class="pull-right">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </li>
@@ -96,7 +85,7 @@
 
             <label for="title">Title</label>
             <textarea rows="5" class="form-control" id="title" placeholder="Title"></textarea>
-            <div><a href="page-list.html" class="btn btn-danger btn-block">Delete</a></div>
+            <div><a href="page-list.view.client.html" class="btn btn-danger btn-block">Delete</a></div>
         </div>
     </div>
 </div>
@@ -104,7 +93,7 @@
 <nav class="navbar navbar-default2 navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../user/profile.html">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span></a>
         </div>
         <div class="navbar-header">
@@ -112,6 +101,3 @@
         </div>
     </div>
 </nav>
-
-</body>
-</html>
