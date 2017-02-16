@@ -30,7 +30,7 @@
 
 
         function updatePage() {
-            var page = PageService.updatePage(pageId, thisPage);
+            var page = PageService.updatePage(pageId, vm.thisPage);
             if(page != null) {
                 $location.url('/user/' + userId + "/website/" + websiteId + "/page");
             } else {

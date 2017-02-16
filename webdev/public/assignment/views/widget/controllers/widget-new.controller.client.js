@@ -37,7 +37,7 @@
         init();
 
         function createWidget(type){
-            var widg = WidgetService.createWidget(pageId, type);
+            var widg = WidgetService.createWidget(vm.pageId, type);
             $location.url('/user/' + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widg._id);
 
         }

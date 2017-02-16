@@ -27,7 +27,7 @@
         vm.deleteWebsite = deleteWebsite;
 
         function updateWebsite() {
-            var website = WebsiteService.updateWebsite(websiteId, thisWebsite);
+            var website = WebsiteService.updateWebsite(websiteId, vm.thisWebsite);
             if(website != null) {
                 $location.url('/user/' + userId + "/website");
             } else {
