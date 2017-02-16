@@ -1,6 +1,4 @@
-/*
- * Created by Rohit Patnaik on 2/14/2017.
- */
+
 (function () {
     angular
         .module("WebAppMaker")
@@ -57,12 +55,10 @@
             website._id = (new Date()).getTime();
             website.update = new Date();
             websites.push(website);
-            console.log(website);
         }
 
         function updateWebsite(websiteId, website) {
             for(var w in websites) {
-                console.log("Inside update");
                 if(websites[w]._id == websiteId) {
                     websites[w].name = website.name;
                     websites[w].description = website.description;

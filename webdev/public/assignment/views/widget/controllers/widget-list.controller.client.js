@@ -12,10 +12,9 @@
         userId = $routeParams.uid;
         websiteId = $routeParams.wid;
         pageId = $routeParams.pid;
-
+        vm.doYouTrustUrl = doYouTrustUrl;
 
         function init() {
-            vm.doYouTrustUrl = doYouTrustUrl;
             vm.userId = userId;
             vm.websiteId = websiteId;
             vm.pageId = pageId;
