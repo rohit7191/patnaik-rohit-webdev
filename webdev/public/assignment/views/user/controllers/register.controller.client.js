@@ -18,13 +18,21 @@
         function registernewuser(user) {
             validUserName = UserService.findUserByName(user.username);
             if(validUserName == null) {
-                if (user && (user.password == user.cpassword)) {
+                if (user.username != null && (user.password == user.cpassword)) {
                     newuser = UserService.createUser(user);
                     $location.url("/user/" + newuser._id);
                 }
+                else{
+                    if(user.username == null) {
+                        vm.error = "Username field is mandatory"
+                    }
+                    else {
+                        vm.error = "Invalid password"
+                    }
+                }
             }
             else{
-                vm.error = "Invalid Username or Password"
+                vm.error = "Username already exists"
             }
         }
     }
