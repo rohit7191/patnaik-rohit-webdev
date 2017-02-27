@@ -12,9 +12,15 @@
 
 
         function init() {
+            // vm.userId = userId;
+            // var websites = WebsiteService.findWebsitesByUser(userId);
+            // vm.websites = websites;
             vm.userId = userId;
-            var websites = WebsiteService.findWebsitesByUser(userId);
-            vm.websites = websites;
+            WebsiteService
+                .findWebsitesByUser(userId)
+                .success(function(websites){
+                    vm.websites = websites;
+                });
         }
         init();
     }

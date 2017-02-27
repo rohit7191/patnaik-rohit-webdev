@@ -13,26 +13,33 @@
 
         function init() {
         }
+
         init();
 
         function registernewuser(user) {
-            validUserName = UserService.findUserByName(user.username);
-            if(validUserName == null) {
-                if (user.username != null && (user.password == user.cpassword)) {
-                    newuser = UserService.createUser(user);
-                    $location.url("/user/" + newuser._id);
-                }
-                else{
-                    if(user.username == null) {
-                        vm.error = "Username field is mandatory"
-                    }
-                    else {
-                        vm.error = "Invalid password"
-                    }
-                }
+            if (user) {
+                UserService
+                    .findUserByName(user.username)
+                    .success(function () {
+                        if (user.password == user.cpassword) {
+                            UserService
+                                .createUser(user)
+                                .success(function (newuser) {
+                                    if (newuser) {
+                                        $location.url('/user/' + newuser._id);
+                                    }
+                                });
+                        }
+                        else {
+                            vm.message = "Passwords doesn't match"
+                        }
+                    })
+                    .error(function () {
+                        vm.error = "Username is already taken"
+                    });
             }
-            else{
-                vm.error = "Username already exists"
+            else {
+                vm.error = "Error registering the user. Try again"
             }
         }
     }

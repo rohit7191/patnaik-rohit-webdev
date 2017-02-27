@@ -12,23 +12,35 @@
 
         var userId = $routeParams.uid;
 
-        var websiteId = $routeParams.wid
+        var websiteId = $routeParams.wid;
 
 
         function init() {
             vm.userId = userId;
+            console.log(userId);
             vm.websiteId = websiteId;
-            var websites = WebsiteService.findWebsitesByUser(userId);
-            vm.websites = websites;
+            WebsiteService
+                .findWebsitesByUser(userId)
+                .success(function (websites) {
+                    vm.websites = websites;
+            });
 
-            var website = WebsiteService.findWebsiteById(websiteId);
-            vm.website = website;
+
+            WebsiteService
+                .findWebsiteById(websiteId)
+                .success(function(website) {
+                    vm.website = website;
+                });
         }
         init();
 
-        function createWebsite(newWebsite) {
-            WebsiteService.createWebsite(userId,newWebsite);
-            $location.url('/user/' + userId + "/website");
+        function createWebsite(new_Website) {
+            WebsiteService
+                .createWebsite(vm.userId,new_Website)
+                .success(function () {
+                    $location.url('/user/' + userId + "/website");
+                });
+
 
         }
     }
