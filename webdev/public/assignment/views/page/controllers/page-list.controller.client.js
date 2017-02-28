@@ -11,14 +11,14 @@
         function init(){
             vm.userId = userId;
             vm.websiteId = websiteId;
-            var pages = PageService.findPageByWebsiteId(websiteId);
-
-            vm.pages = pages;
-
+            console.log(websiteId);
+            PageService
+                .findPageByWebsiteId(websiteId)
+                .success(function(pages) {
+                    vm.pages = pages;
+                });
         }
-
         init();
-
     }
 })();
 

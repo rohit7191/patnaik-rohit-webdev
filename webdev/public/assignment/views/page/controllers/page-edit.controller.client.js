@@ -20,26 +20,40 @@
             vm.userId = userId;
             vm.websiteId = websiteId;
             vm.pageId = pageId;
-            var pages = PageService.findPageByWebsiteId(websiteId);
-            vm.pages = pages;
+            PageService
+                .findPageByWebsiteId(websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
 
-            var thisPage = PageService.findPageById(pageId);
-            vm.thisPage = thisPage;
+            PageService
+                .findPageById(pageId)
+                .success(function (thisPage) {
+                    vm.thisPage = thisPage;
+                });
         }
         init();
 
 
         function updatePage() {
-            var page = PageService.updatePage(pageId, vm.thisPage);
-            if(page != null) {
-                $location.url('/user/' + userId + "/website/" + websiteId + "/page");
-            } else {
-                vm.error = "Error in updating page";
-            }
+            PageService
+                .updatePage(pageId, vm.thisPage)
+                .success(function (page) {
+                    if(page != null) {
+                        $location.url('/user/' + userId + "/website/" + websiteId + "/page");
+                    }
+                })
+                .error(function () {
+                    vm.error = "Error in updating page";
+                });
         }
-        function deletePage() {
-            PageService.deletePage(pageId);
-            $location.url('/user/' + userId + "/website/" + websiteId + "/page");
+
+        function deletePage(pageId) {
+            PageService
+                .deletePage(vm.pageId)
+                .success(function () {
+                    $location.url('/user/' + userId + "/website/" + websiteId + "/page");
+                });
         }
     }
 })();

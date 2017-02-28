@@ -19,15 +19,24 @@
         function init(){
             vm.userId = userId;
             vm.websiteId = websiteId;
-            var pages = PageService.findPageByWebsiteId(websiteId);
-            vm.pages = pages;
+            PageService
+                .findPageByWebsiteId(websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
         }
         init();
 
         function createPage(newPage) {
-            PageService.createPage(websiteId,newPage);
-            $location.url('/user/' + userId + "/website/" + websiteId + "/page");
-
+            PageService
+                .createPage(vm.websiteId,newPage)
+                .success(function () {
+                    console.log("inside create page");
+                    console.log(websiteId);
+                    console.log(vm.websiteId);
+                    $location.url('/user/' + userId + "/website/" + websiteId + "/page");
+                });
         }
+
     }
 })();
