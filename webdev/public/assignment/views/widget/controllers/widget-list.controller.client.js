@@ -18,8 +18,11 @@
             vm.userId = userId;
             vm.websiteId = websiteId;
             vm.pageId = pageId;
-            var widgets = WidgetService.findWidgetsByPageId(pageId);
-            vm.widgets = widgets;
+           WidgetService
+               .findWidgetsByPageId(pageId)
+               .success(function (widgets) {
+                   vm.widgets = widgets;
+               });
         }
         init();
 

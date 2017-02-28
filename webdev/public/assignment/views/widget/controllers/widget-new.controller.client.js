@@ -27,19 +27,27 @@
             vm.websiteId = websiteId;
             vm.pageId = pageId;
             vm.widgetId = widgetId;
-            var widgets = WidgetService.findWidgetsByPageId(pageId);
-            vm.widgets = widgets;
-
-            var widget = WidgetService.findWidgetById(widgetId);
-            vm.widget = widget;
-
+            WidgetService
+                .findWidgetsByPageId(pageId)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                });
+            WidgetService
+                .findWidgetById(widgetId)
+                .success(function (widget) {
+                    vm.widget = widget;
+                });
         }
         init();
 
-        function createWidget(type){
-            var widg = WidgetService.createWidget(vm.pageId, type);
-            $location.url('/user/' + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widg._id);
-
+        function createWidget(type) {
+            var widg = {};
+            widg.widgetType = type;
+            WidgetService
+                .createWidget(vm.pageId, widg)
+                .success(function (w) {
+                    $location.url('/user/' + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + w._id);
+                });
         }
     }
 })();

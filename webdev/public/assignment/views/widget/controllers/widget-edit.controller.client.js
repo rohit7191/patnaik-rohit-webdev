@@ -9,11 +9,9 @@
 
         var userId = $routeParams.uid;
 
-
         var websiteId = $routeParams.wid;
 
         var pageId = $routeParams.pid;
-
 
         var widgetId = $routeParams.wgid;
 
@@ -28,31 +26,39 @@
             vm.websiteId = websiteId;
             vm.pageId = pageId;
             vm.widgetId = widgetId;
-            var widgets = WidgetService.findWidgetsByPageId(pageId);
-            vm.widgetId = widgets;
-
-            var widget = WidgetService.findWidgetById(widgetId);
-            vm.widget = widget;
-
+            WidgetService
+                .findWidgetsByPageId(pageId)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                });
+            WidgetService
+                .findWidgetById(widgetId)
+                .success(function (widget) {
+                    console.log(widget);
+                    vm.widget = widget;
+                });
         }
-
         init();
 
-        function updateWidget(thisWidget) {
-            var widget = WidgetService.updateWidget(widgetId, thisWidget);
-            if(widget != null) {
-                $location.url('/user/' + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-            }
-            else
-            {
-                vm.error = "Error! Widget not updated";
-            }
+        function updateWidget() {
+            WidgetService
+                .updateWidget(widgetId, vm.widget)
+                .success(function (widget) {
+                    if(widget != null) {
+                        $location.url('/user/' + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+                    }
+                })
+                .error(function () {
+                    vm.error = "Error! Widget not updated";
+                });
         }
 
-        function deleteWidget() {
-            WidgetService.deleteWidget(widgetId);
-                $location.url('/user/' + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-
+        function deleteWidget(widgetId) {
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .success(function () {
+                    $location.url('/user/' + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+                });
         }
     }
 })();

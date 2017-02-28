@@ -18,7 +18,7 @@ module.exports = function (app) {
         var wid = req.params.websiteId;
         var page = req.body;
         page.websiteId = wid;
-        console.log("inside page server service" + wid);
+       // console.log("inside page server service" + wid);
         page._id = (new Date()).getTime();
         pages.push(page);
         res.json(page);
@@ -26,7 +26,7 @@ module.exports = function (app) {
 
     function findPageByWebsiteId(req, res) {
         var wid = req.params.websiteId;
-        console.log(wid);
+        //console.log(wid);
         var page = [];
         for(var p in pages) {
             if(wid == pages[p].websiteId) {
