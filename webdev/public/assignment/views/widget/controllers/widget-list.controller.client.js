@@ -13,6 +13,7 @@
         websiteId = $routeParams.wid;
         pageId = $routeParams.pid;
         vm.doYouTrustUrl = doYouTrustUrl;
+        vm.updatePosition = updatePosition;
 
         function init() {
             vm.userId = userId;
@@ -32,6 +33,13 @@
             var id = urlParts[urlParts.length - 1];
             baseUrl += id;
             return $sce.trustAsResourceUrl(baseUrl);
+        }
+
+        function updatePosition(initial, final){
+            WidgetService
+                .updatePosition(initial, final, pageId)
+                .success(function (widgets) {
+                });
         }
     }
 })();

@@ -19,6 +19,7 @@
         //     { "_id": "789", "widgetType": "HEADER", "pageId": "432", "text": "<p>Lorem ipsum</p>"}
         // ];
         var api = {
+            "updatePosition": updatePosition,
             "findWidgetsByPageId": findWidgetsByPageId,
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
@@ -27,6 +28,10 @@
 
         };
         return api;
+
+        function updatePosition(initial, final, pageId){
+            return $http.put("/page/" + pageId + "/widget?initial=" + initial + "&final=" + final);
+        }
 
         function findWidgetsByPageId(pageId) {
             // var widg = [];
@@ -73,6 +78,8 @@
             // var widget = { "_id": (new Date()).getTime(), "widgetType": type, "pageId": pageId, "size": 0, "text": ""};
             // widgets.push(widget);
             // return widget;
+            console.log("inside client service");
+            console.log(pageId);
             return $http.post("/api/page/" + pageId + "/widget", widget);
         }
     }
