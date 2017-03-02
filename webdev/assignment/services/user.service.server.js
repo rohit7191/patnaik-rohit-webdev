@@ -60,7 +60,6 @@ module.exports = function (app) {
         var user = users.find(function (u) {
             return u.username == req.query.username;
         });
-        console.log(user);
         if (user) {
             res.sendStatus(404)
         } else {
@@ -71,22 +70,16 @@ module.exports = function (app) {
     function findUserByCredentials(req, res) {
         var username = req.query.username;
         var password = req.query.password;
-        console.log(username);
-        console.log(password);
-        console.log("find user by credentials HTTP service");
         var user = users.find(function (user) {
             return user.password == password && user.username == username;
         });
-        console.log(user);
         res.json(user);
     }
 
     function createUser(req, res) {
-
         var user = req.body;
-            user._id = (new Date()).getTime() + "";
+        user._id = (new Date()).getTime() + "";
         users.push(user);
         res.json(user);
-
     }
 }

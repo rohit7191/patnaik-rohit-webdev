@@ -31,7 +31,7 @@
                                 });
                         }
                         else {
-                            vm.message = "Passwords doesn't match"
+                            vm.error = "Passwords doesn't match"
                         }
                     })
                     .error(function () {
