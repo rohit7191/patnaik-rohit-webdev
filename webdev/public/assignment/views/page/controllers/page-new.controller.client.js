@@ -31,9 +31,6 @@
             PageService
                 .createPage(vm.websiteId,newPage)
                 .success(function () {
-                    console.log("inside create page");
-                    console.log(websiteId);
-                    console.log(vm.websiteId);
                     $location.url('/user/' + userId + "/website/" + websiteId + "/page");
                 });
         }

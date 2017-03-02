@@ -11,7 +11,6 @@
         function init(){
             vm.userId = userId;
             vm.websiteId = websiteId;
-            console.log(websiteId);
             PageService
                 .findPageByWebsiteId(websiteId)
                 .success(function(pages) {

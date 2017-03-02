@@ -103,10 +103,6 @@ module.exports = function (app) {
     function createWidget(req, res) {
         var pageId = req.params.pageId;
         var widget = req.body;
-        console.log("inside createwidget server service");
-        console.log(pageId);
-        console.log(widget);
-
         widget.pageId = pageId;
         widget._id = (new Date()).getTime();
         widgets.push(widget);

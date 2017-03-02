@@ -27,7 +27,6 @@ module.exports = function (app) {
     function updateUser(req, res) {
         var userId = req.params.userId;
         var newUser = req.body;
-        console.log(newUser);
         for (var u in users) {
             if (users[u]._id == userId) {
                 users[u].firstName = newUser.firstName;
