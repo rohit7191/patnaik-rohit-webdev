@@ -8,19 +8,6 @@ module.exports = function (app, widgetModel) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.put("/page/:pageId/widget", reorderWidget);
-   // app.put("/page/:pageId/widget", sortable);
-
-    // var widgets = [
-    //     { "_id": "123", "widgetType": "HEADER", "pageId": "432", "size": 2, "text": "GIZMODO"},
-    //     { "_id": "234", "widgetType": "HEADER", "pageId": "432", "size": 4, "text": "Lorem ipsum"},
-    //     { "_id": "345", "widgetType": "IMAGE", "pageId": "432", "width": "100%",
-    //         "url": "http://lorempixel.com/400/200/"},
-    //     { "_id": "456", "widgetType": "HEADER", "pageId": "432", "size": 3, "text": "Lorem ipsum"},
-    //     { "_id": "567", "widgetType": "HEADER", "pageId": "432", "size": 4, "text": "Lorem ipsum"},
-    //     { "_id": "678", "widgetType": "YOUTUBE", "pageId": "432", "width": "100%",
-    //         "url": "https://youtu.be/AM2Ivdi9c4E" },
-    //     { "_id": "789", "widgetType": "HEADER", "pageId": "432", "size": 4, "text": "Lorem ipsum"}
-    // ];
 
     var multer = require('multer');
     var storage = multer.diskStorage({
@@ -58,14 +45,7 @@ module.exports = function (app, widgetModel) {
     }
 
     function findWidgetsByPageId(req, res) {
-       // var widg = [];
         var pageId = req.params.pageId;
-        // for(var w in widgets){
-        //     if(widgets[w].pageId == pageId) {
-        //         widg.push(widgets[w]);
-        //     }
-        // }
-        // res.json(widg);
         widgetModel
             .findAllWidgetsForPage(pageId)
             .then(function (widgets) {
@@ -77,10 +57,6 @@ module.exports = function (app, widgetModel) {
 
     function findWidgetById(req, res) {
         var widgetId = req.params.widgetId;
-        // var widget = widgets.find(function (w) {
-        //     return w._id == widgetId;
-        // });
-        // res.json(widget);
         widgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
@@ -104,14 +80,6 @@ module.exports = function (app, widgetModel) {
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
-        // for(var w in widgets) {
-        //     if(widgets[w]._id == widgetId) {
-        //         widgets.splice(w, 1);
-        //         res.json(w);
-        //         return;
-        //     }
-        // }
-        // res.json(404);
         widgetModel
             .deleteWidget(widgetId)
             .then(function (widget) {
@@ -124,12 +92,6 @@ module.exports = function (app, widgetModel) {
     function createWidget(req, res) {
         var pageId = req.params.pageId;
         var widget = req.body;
-        // widget.pageId = pageId;
-        // widget._id = (new Date()).getTime();
-        // widgets.push(widget);
-        // res.json(widget);
-      //  console.log(pageId);
-      //  console.log(widget);
         widgetModel
             .createWidget(pageId, widget)
             .then(function (widget) {
@@ -141,8 +103,8 @@ module.exports = function (app, widgetModel) {
     }
 
     function reorderWidget(req, res) {
-        var start = parseInt(req.query.start);
-        var end = parseInt(req.query.end);
+        var start = parseInt(req.query.initial);
+        var end = parseInt(req.query.final);
         var pageId = req.params.pageId;
 
         widgetModel
@@ -154,21 +116,4 @@ module.exports = function (app, widgetModel) {
             });
     }
 
-    function sortable(req,res){
-        var initial = req.query.initial;
-        var final = req.query.final;
-        var pageId = req.params.pageId;
-        var widgetsList = [];
-        widgets = widgets.filter(function(w) {
-            if(pageId === w.pageId) {
-                widgetsList.push(w);
-            }
-            return widgets.indexOf(w) < 0
-        });
-        var widget  = widgetsList[initial];
-        widgetsList.splice(initial, 1);
-        widgetsList.splice(final,0, widget);
-        widgets.push.apply(widgets, widgetsList);
-        res.json(widgets);
-    }
 };

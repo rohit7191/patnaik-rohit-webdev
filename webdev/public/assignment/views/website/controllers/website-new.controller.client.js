@@ -24,14 +24,6 @@
                 .success(function (websites) {
                     vm.websites = websites;
             });
-
-
-            // WebsiteService
-            //     .findWebsiteById(websiteId)
-            //     .success(function(website) {
-            //         console.log(website);
-            //         vm.website = website;
-            //     });
         }
         init();
 

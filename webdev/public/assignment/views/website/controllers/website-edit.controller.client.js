@@ -31,9 +31,6 @@
 
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-        // console.log("outside update");
-        // console.log(websiteId);
-        // console.log(vm.thisWebsite);
         function updateWebsite(thisWebsite) {
           WebsiteService
                 .updateWebsite(thisWebsite._id, thisWebsite)
