@@ -74,6 +74,11 @@
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',
                 controller: "WidgetEditController",
                 controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/flickr", {
+                templateUrl: "views/widget/templates/widget-flickr.search.client.html",
+                controller: "FlickrImageSearchController",
+                controllerAs: "model"
             });
 
 

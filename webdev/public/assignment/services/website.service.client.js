@@ -28,6 +28,7 @@
         }
 
         function createWebsite(userId, website) {
+           // console.log(userId);
             return $http.post("/api/user/"+ userId +"/website", website);
         }
 

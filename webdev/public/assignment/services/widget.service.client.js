@@ -40,6 +40,7 @@
         }
 
         function createWidget(pageId, widget) {
+            console.log(widget);
             return $http.post("/api/page/" + pageId + "/widget", widget);
         }
     }

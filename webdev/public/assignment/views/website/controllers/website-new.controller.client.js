@@ -18,6 +18,7 @@
         function init() {
             vm.userId = userId;
             vm.websiteId = websiteId;
+
             WebsiteService
                 .findWebsitesByUser(userId)
                 .success(function (websites) {
@@ -25,11 +26,12 @@
             });
 
 
-            WebsiteService
-                .findWebsiteById(websiteId)
-                .success(function(website) {
-                    vm.website = website;
-                });
+            // WebsiteService
+            //     .findWebsiteById(websiteId)
+            //     .success(function(website) {
+            //         console.log(website);
+            //         vm.website = website;
+            //     });
         }
         init();
 

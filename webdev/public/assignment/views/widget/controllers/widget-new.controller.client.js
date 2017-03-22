@@ -15,7 +15,7 @@
         var pageId = $routeParams.pid;
 
 
-        var widgetId = $routeParams.wgid;
+        //var widgetId = $routeParams.wgid;
 
 
         //event handler
@@ -26,23 +26,26 @@
             vm.userId = userId;
             vm.websiteId = websiteId;
             vm.pageId = pageId;
-            vm.widgetId = widgetId;
-            WidgetService
-                .findWidgetsByPageId(pageId)
-                .success(function (widgets) {
-                    vm.widgets = widgets;
-                });
-            WidgetService
-                .findWidgetById(widgetId)
-                .success(function (widget) {
-                    vm.widget = widget;
-                });
+           // vm.widgetId = widgetId;
+            // WidgetService
+            //     .findWidgetsByPageId(pageId)
+            //     .success(function (widgets) {
+            //         vm.widgets = widgets;
+            //     });
+            // WidgetService
+            //     .findWidgetById(widgetId)
+            //     .success(function (widget) {
+            //         vm.widget = widget;
+            //     });
         }
         init();
 
         function createWidget(type) {
             var widg = {};
-            widg.widgetType = type;
+            widg.type = type;
+            console.log(widg.type);
+            console.log(vm.pageId);
+
             WidgetService
                 .createWidget(vm.pageId, widg)
                 .success(function (w) {

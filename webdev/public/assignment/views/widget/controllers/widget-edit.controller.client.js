@@ -26,11 +26,11 @@
             vm.websiteId = websiteId;
             vm.pageId = pageId;
             vm.widgetId = widgetId;
-            WidgetService
-                .findWidgetsByPageId(pageId)
-                .success(function (widgets) {
-                    vm.widgets = widgets;
-                });
+            // WidgetService
+            //     .findWidgetsByPageId(pageId)
+            //     .success(function (widgets) {
+            //         vm.widgets = widgets;
+            //     });
             WidgetService
                 .findWidgetById(widgetId)
                 .success(function (widget) {

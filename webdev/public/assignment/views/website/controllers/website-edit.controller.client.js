@@ -31,10 +31,12 @@
 
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-
-        function updateWebsite() {
+        // console.log("outside update");
+        // console.log(websiteId);
+        // console.log(vm.thisWebsite);
+        function updateWebsite(thisWebsite) {
           WebsiteService
-                .updateWebsite(websiteId, vm.thisWebsite)
+                .updateWebsite(thisWebsite._id, thisWebsite)
                 .success(function (website) {
                     if(website != null) {
                         $location.url('/user/' + userId + "/website");

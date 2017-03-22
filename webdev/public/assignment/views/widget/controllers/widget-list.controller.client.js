@@ -14,7 +14,7 @@
         pageId = $routeParams.pid;
         vm.doYouTrustUrl = doYouTrustUrl;
         vm.updatePosition = updatePosition;
-
+        vm.doYouTrustHtml = doYouTrustHtml;
         function init() {
             vm.userId = userId;
             vm.websiteId = websiteId;
@@ -33,6 +33,10 @@
             var id = urlParts[urlParts.length - 1];
             baseUrl += id;
             return $sce.trustAsResourceUrl(baseUrl);
+        }
+
+        function doYouTrustHtml(text) {
+            return $sce.trustAsHtml(text);
         }
 
         function updatePosition(initial, final){

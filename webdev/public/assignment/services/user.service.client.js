@@ -31,6 +31,8 @@
         }
 
         function findUserById(userId) {
+                console.log("Inside client service");
+                console.log(userId);
                 return $http.get("/api/user/"+userId);
             }
 
