@@ -31,17 +31,38 @@ module.exports = function (app, widgetModel) {
         var widgetId = req.body.widgetId;
         var width = req.body.width;
         var myFile = req.file;
-        var destination = myFile.destination;
 
-        for (var i in widgets) {
-            if (widgets[i]._id == widgetId) {
-                widgets[i].width = width;
-                widgets[i].url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
-                pageId = widgets[i].pageId;
-            }
-        }
+        // for (var i in widgets) {
+        //     if (widgets[i]._id == widgetId) {
+        //         widgets[i].width = width;
+        //         widgets[i].url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
+        //         pageId = widgets[i].pageId;
+        //     }
+        // }
+        //
+        // res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function (widget) {
+                    widget.url =  req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
+                    pageId = widget._page;
 
-        res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+                    widgetModel
+                        .updateWidget(widget._id, widget)
+                        .then(
+                            function (updatedWidget) {
+                                res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+                            },
+                            function (failedUpdate) {
+                                res.sendStatus(400).send(failedUpdate);
+                            }
+                        );
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
     function findWidgetsByPageId(req, res) {

@@ -34,7 +34,6 @@
             WidgetService
                 .findWidgetById(widgetId)
                 .success(function (widget) {
-                    console.log(widget);
                     vm.widget = widget;
                 });
         }

@@ -43,8 +43,6 @@
         function createWidget(type) {
             var widg = {};
             widg.type = type;
-            console.log(widg.type);
-            console.log(vm.pageId);
 
             WidgetService
                 .createWidget(vm.pageId, widg)

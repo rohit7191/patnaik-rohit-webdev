@@ -15,12 +15,10 @@
 
             WidgetService.findWidgetById(vm.currentWidgetId)
                 .success(function(curWidget){
-                    console.log("Success");
                     vm.currentWidget = curWidget;
                 })
                 .error(function(err){
-                    console.log("Error");
-                    vm.error = "Error while fetching current widget!! Please try after sometime";
+                    vm.error = "Could not fetch widget";
                 });
         }
 
