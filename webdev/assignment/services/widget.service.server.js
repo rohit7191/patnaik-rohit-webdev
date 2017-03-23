@@ -32,15 +32,6 @@ module.exports = function (app, widgetModel) {
         var width = req.body.width;
         var myFile = req.file;
 
-        // for (var i in widgets) {
-        //     if (widgets[i]._id == widgetId) {
-        //         widgets[i].width = width;
-        //         widgets[i].url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
-        //         pageId = widgets[i].pageId;
-        //     }
-        // }
-        //
-        // res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
         widgetModel
             .findWidgetById(widgetId)
             .then(
@@ -118,14 +109,14 @@ module.exports = function (app, widgetModel) {
             .then(function (widget) {
                 res.json(widget);
             }, function (error) {
-                console.log("error");
                 res.sendStatus(500).send(error);
             });
     }
 
+
     function reorderWidget(req, res) {
-        var start = parseInt(req.query.initial);
-        var end = parseInt(req.query.final);
+        var start = req.query.initial;
+        var end = req.query.final;
         var pageId = req.params.pageId;
 
         widgetModel

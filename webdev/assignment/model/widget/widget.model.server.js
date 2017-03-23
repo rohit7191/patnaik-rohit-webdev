@@ -16,59 +16,33 @@ module.exports = widgetModel;
 
 var pageModel = require('../page/page.model.server');
 
-function createWidget(pageId, widget) {
+
+function createWidget(pageId,widget) {
 
     var deferred = q.defer();
+
     widget._page = pageId;
 
-    widgetModel.findOne({_page: pageId})
-        .sort('-position')
-        .exec(function (err, widgetEnd) {
-            if (widgetEnd)
-                widget.position = widgetEnd.position + 1;
-            else
-                widget.position = 0;
-
+    widgetModel
+        .find({_page:pageId},function (err,widgets) {
+            widget.order = widgets.length;
             widgetModel
-                .create(widget, function (err, widget) {
-                    if (err)
+                .create(widget,function (err,widget) {
+                    if(err) {
                         deferred.reject(err);
-                    else {
-                        pageModel
-                            .findPageById(widget._page)
-                            .then(function (page) {
-                                page.widgets.push(widget._id);
-                                page.save(function (err) {
-                                    if (err)
-                                    {console.log("error2");
-                                        deferred.reject(err);}
-                                    else
-                                        deferred.resolve(widget);
-                                });
-                            });
+                    } else {
+                        deferred.resolve(widget);
                     }
                 });
         });
 
-        return deferred.promise;
-
+    return deferred.promise;
 }
 
 function findAllWidgetsForPage(pageId) {
-
-    var deferred = q.defer();
-
-    widgetModel.find({_page: pageId})
-        .sort('position')
-        .exec(function (err, widgets) {
-            if(err)
-                deferred.reject(err);
-            else
-                deferred.resolve(widgets);
-        });
-
-    return deferred.promise;
-
+    return widgetModel
+        .find({_page:pageId})
+        .sort({order:1});
 }
 
 function findWidgetById(widgetId) {
@@ -101,79 +75,46 @@ function updateWidget(widgetId, widget) {
 
 }
 
+function reorderWidget(pageId, start, end) {
+    return widgetModel
+        .find({_page: pageId}, function (err, widgets) {
+            widgets.forEach(function (widget) {
+                if (start < end) {
+                    if (widget.order == start) {
+                        widget.order = end;
+                        widget.save();
+                    }
+                    else if (widget.order > start && widget.order <= end) {
+                        widget.order = widget.order - 1;
+                        widget.save();
+                    }
+                } else {
+                    if (widget.order == start) {
+                        widget.order = end;
+                        widget.save();
+                    }
+
+                    else if (widget.order < start && widget.order >= end) {
+                        widget.order = widget.order + 1;
+                        widget.save();
+                    }
+                }
+            });
+        });
+}
+
 function deleteWidget(widgetId) {
 
     var deferred = q.defer();
 
     widgetModel
-        .findById(widgetId, function (err, widget) {
-            if(err)
-                deferred.reject(err);
-            else {
-                widgetModel.update({_page: widget._page, position: {$gt: widget.position}}, {$inc: {position: -1}}, {multi: true}, function (err, success) {
-                    if(err)
-                        deferred.reject(err);
-                    else {
-                        widgetModel
-                            .findByIdAndRemove(widgetId, function (err, widget) {
-                                if(err)
-                                    deferred.reject(err);
-                                else
-                                    {
-                                    widget.remove();
-                                        deferred.resolve(widget);
-                                    }
-                                });
-                            }
-                        });
-                    }
-        });
+        .findByIdAndRemove(widgetId, function (err, status) {
+             if(err)
+                 deferred.abort(err);
+             else
+                deferred.resolve(status);
+    });
 
     return deferred.promise;
-
 }
-
-function reorderWidget(pageId, start, end) {
-
-    var deferred = q.defer();
-
-    if(start < end) {
-
-        widgetModel
-            .update({_page: pageId, position: {$gt: start, $lte: end}}, {$inc: {position: -1}}, {multi: true}, function (err, success) {
-                if(err)
-                    deferred.reject(err);
-                else {
-                    widgetModel
-                        .findOneAndUpdate({_page: pageId, position: start}, {$set: {position: end}}, function (err, widget) {
-                            if(err)
-                                deferred.reject(err);
-                            else
-                                deferred.resolve(widget);
-                        });
-                    }
-            });
-        }
-    else
-        {
-            widgetModel
-                .update({_page: pageId, position: {$gte: end, $lt: start}}, {$inc: {position: 1}}, {multi: true}, function (err, success) {
-                    if(err)
-                        deferred.reject(err);
-                    else {
-                        widgetModel
-                            .findOneAndUpdate({_page: pageId, position: start}, {$set: {position: end}}, function (err, widget) {
-                                if(err)
-                                    deferred.reject(err);
-                                else
-                                deferred.resolve(widget);
-                            });
-                        }
-                    });
-        }
-
-    return deferred.promise;
-
-}
-
 
