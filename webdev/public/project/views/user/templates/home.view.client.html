@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="css/creative.css" type="text/css">
+
+
+<nav id=mainNav class="navbar navbar-default navbar-fixed-top"  role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" >Movie Zone</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="#/login">Login</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/register">Register</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+
+</nav>
+<section class="bg-primary" id="about">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Movie Zone</h2>
+                <h3 class="section-sub-heading">Get the latest movie updates!</h3>
+                <hr class="light">
+                <p class="text-faded">Welcome to Movie Zone! Browse your favorite movies.
+                    Rate, Review and socialize with other movie buffs.
+                </p>
+
+                <form class="navbar-form" role="search">
+                    <div class="form-group">
+                        <input ng-model = "model.movieName"
+                               type="text"
+                               class="form-control"
+                               placeholder="Search your movie">
+                    </div>
+
+                    <a href ="#/search/{{model.movieName}}"
+                       type="submit" class="btn btn-default btn-success">Search</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container-fluid">
+    <div class="col-sm-12   col-md-12   main">
+        <h3> Now Playing..</h3>
+        <div class="row placeholders">
+            <div class="col-xs-12
+                        col-sm-8
+                        col-sm-3
+                        placeholder"
+                 ng-repeat="movie in model.movies"
+                 ng-if="movie.poster_path">
+                <div class="thumbnail">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <a ng-if="!movie.video_url">
+                            <img ng-src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+                        </a>
+                    </div>
+                    <div class="caption">
+                        <a href="#/movie/{{movie.id}}"><h4 class="smallheader">{{movie.title| limitTo:30}}</h4></a>
+                        <div ng-model="movie.criticsRating"
+                             ng-init="movie.criticsRating=(movie.vote_average/2)" class="meter">
+                            <p> <h5 class="rating">Rating : {{movie.criticsRating}}</h5>
+                            <meter class="meter" min="0" max="5" value="{{movie.criticsRating}}"></meter>
+                            </p>
+                        </div>
+                        <h5 class="rating">Release Date: {{movie.release_date | date:'MMM d, y' }}</h5>
+                        <h4 class="smallheader">
+                        <span ng-repeat="id in movie.genre_ids | limitTo:3">
+                            <span class="label label-default label-as-badge" >
+                                {{model.genreName(id)}}
+                            </span>&nbsp;&nbsp;
+                        </span>
+                            <br ng-if="movie.genre_ids.length==0"/>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Movie Zone helps you ..</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="makelightcolor" class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-8 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa fa-video-camera text-primary sr-icons"></i>
+                    <h3>Search your favorite movies</h3>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-thumbs-up text-primary sr-icons"></i>
+                    <h3>Rate and review</h3>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-users text-primary sr-icons"></i>
+                    <h3>Follow other movie critics</h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

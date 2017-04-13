@@ -1,0 +1,135 @@
+
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
+                <img class="logo_film"
+                     src="./img/MovieZone-logo.jpg">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="navbar-text pull-right">
+               <a class="mycustomfont" href="#/moviedefault"><span class="glyphicon glyphicon-home"> </span></a>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<!-- End of Header-->
+
+<!--Body-->
+<div class="container-fluid pushdown">
+    <div class="container-fluid">
+        <!-- Search Box -->
+
+        <p></p>
+
+    <h1>Register</h1>
+
+
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+
+    <form novalidate name="model.myform">
+        <label for="username">Username</label>
+        <input ng-model="username"
+               id="username"
+               name="username"
+               placeholder="John"
+               type="text"
+               class="form-control"
+               required/>
+       <span class="alert-class"
+             ng-show="model.myform.username.$invalid">{{model.alert}}</span>
+
+
+
+        <label for="firstName">First Name</label>
+        <input ng-model="firstName"
+               id="firstName"
+               placeholder="John"
+               name="firstName"
+               type="firstName"
+               class="form-control"
+               required/>
+
+
+        <label for="lastName">Last Name</label>
+        <input ng-model="lastName"
+               id="lastName"
+               placeholder="Doe"
+               name="lastName"
+               type="lastName"
+               class="form-control"
+               required/>
+
+
+        <label for="password">Password</label>
+        <input ng-model="password"
+               id="password"
+               placeholder="Password"
+               name="password"
+               type="password"
+               class="form-control"
+               required/>
+    <span class="alert-class"
+          ng-show="model.myform.password.$invalid">{{model.alert}}</span>
+
+        <label for="vpassword">Verify Password</label>
+        <input ng-model="vpassword"
+               id="vpassword"
+               name="vpassword"
+               placeholder="Verify Password"
+               type="password"
+               class="form-control"
+               required/>
+
+    <span class="alert-class"
+          ng-show="model.myform.vpassword.$invalid">{{model.pwmatch}}</span>
+
+        <p></p>
+
+        <button class="btn btn-primary btn-block"
+                ng-click="model.register(username, password, firstName, lastName)"
+                type="submit">Sign Up</button>
+
+    </form>
+
+    <p> </p>
+    <a class="btn btn-danger btn-block"
+       href="#/login">Cancel</a>
+
+</div>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a class="mycustomfont" href="#/login">
+                <span><b>Login</b></span>
+            </a>
+        </p>
+
+
+    </div>
+</nav>
+
+

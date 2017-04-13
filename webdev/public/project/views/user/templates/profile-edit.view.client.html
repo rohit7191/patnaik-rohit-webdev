@@ -1,0 +1,135 @@
+
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
+                <img class="logo_film"
+                     src="./img/moviezone-logo.jpg">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="navbar-text pull-right">
+               <a class="mycustomfont" href="#/moviedefault"><span class="glyphicon glyphicon-home"> </span></a>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End of Header-->
+
+<!--Body-->
+<div class="container-fluid pushdown">
+    <div class="container-fluid">
+        <!-- Search Box -->
+        <div class="input-group">
+            <input ng-model = "model.movieName"
+                   type="text"
+                   placeholder="Search movie.."
+                   class="form-control ng-pristine ng-valid ng-touched">
+               <span class="input-group-btn ">
+                   <a href ="#/search/{{model.movieName}}"
+                      class="btn btn-info makegray"
+                      type="button">
+                       <span class="glyphicon glyphicon-search"></span>
+                   </a>
+                </span>
+        </div>
+        <p></p>
+        <p></p>
+    <div ng-if="model.success"
+         class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input ng-model="model.user.username"
+                   type="text"
+                   class="form-control"
+                   id="username" placeholder="John">
+        </div>
+    </form>
+
+    <form>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model="model.user.email"
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   placeholder="john@xyz.com">
+        </div>
+    </form>
+
+    <form>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model="model.user.firstName"
+                   type="text"
+                   class="form-control"
+                   id="first-name"
+                   placeholder="John">
+        </div>
+    </form>
+
+    <form>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input ng-model="model.user.lastName"
+                   type="text"
+                   class="form-control"
+                   id="last-name"
+                   placeholder="Doe">
+        </div>
+    </form>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.updateUser(model.user)">Confirm Changes</a>
+    <a ng-click = "model.logout()"class="btn btn-danger btn-block">Logout</a>
+    <a class="btn btn-danger btn-block "
+       ng-click = "model.deleteUser()">Delete Account</a>
+
+</div>
+    </div>
+<!-- End of Body-->
+
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a class="mycustomfont" href="#/profile">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+
+        <div class="navbar-text pull-left">
+            <a class="mycustomfont" ng-click="model.logout()">
+                <span class="glyphicon glyphicon-off"></span></a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"></a>
+        </div>
+
+    </div>
+</nav>
+
+

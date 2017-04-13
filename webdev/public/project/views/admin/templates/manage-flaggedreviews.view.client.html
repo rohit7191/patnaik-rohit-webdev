@@ -1,0 +1,117 @@
+<!-- Header -->
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
+                <img class="logo_film"
+                     src="./img/moviezone-logo.jpg">
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!--Body-->
+<div class="container container-fluid pushdown">
+    <div class="btn-group-wrap">
+        <div class="container">
+            <div class="btn-group ">
+                <a class="btn btn-success buttoncolor"
+                   href="#/manageusers">Users
+                </a>
+                <a class="btn btn-success buttoncolor"
+                   href="#/managemovies">Ratings and Reviews
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pushdownless">
+    <div ng-if="model.reportReviewMessage" class="alert alert-success">{{model.reportReviewMessage}}</div>
+    <h2>Flagged Reviews</h2>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th>User</th>
+                <th>Title</th>
+                <th>Review Text</th>
+                <th>Remove</th>
+
+            </tr>
+            </thead>
+
+            <!-- Table Body-->
+            <tbody ng-repeat="review in model.results">
+            <tr ng-if= "review.visible=='true' && review.flagged=='true'">
+                <td >
+                    <span class="glyphicon glyphicon-user ">
+                        <a class="makeblack"
+                        href="#/user/profile/{{review.username}}">
+                       {{review.username}}</a></span>
+
+
+                </td>
+                <td >
+                    <span  >
+                        <a class="makeblack"
+                           href="#/movie/{{review.tmdbId}}">
+                       {{review.title}}</a></span>
+
+
+                </td>
+                <td>{{review.text}}</td>
+                <td><a  type="button" ng-click="model.removeReview(review._id, review.tmdbId)"
+                        class=" reportbutton btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-remove "> Remove</span>
+                    </a>
+                    <a  type="button" ng-click="model.donotremoveReview(review._id, review.tmdbId)"
+                        class=" reportbutton btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-ok "> Keep </span>
+                    </a>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <a  class="mycustomfont" ng-click="model.logout()">
+                <span class="glyphicon glyphicon-off"></span>
+            </a>
+
+        </p>
+        <p class="navbar-text pull-right">
+
+            <a  class="mycustomfont" href="#/adminconsole">
+                <span class="fa fa-user-secret fa-lg"></span>
+            </a>
+        </p>
+
+    </div>
+</nav>
+
+
+
+
+
+
+
+

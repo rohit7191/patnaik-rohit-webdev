@@ -1,0 +1,239 @@
+<!-- Header -->
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
+                <img class="logo_film"
+                     src="./img/moviezone-logo.jpg">
+            </a>
+
+        </div>
+
+    </div>
+</nav>
+
+
+<!--Body-->
+<div class="container-fluid pushdownless">
+    <div class="btn-group-wrap">
+        <div class="container">
+            <div class="btn-group ">
+                <a class="btn btn-success buttoncolor"
+                   href="#/managemovies">Ratings and Reviews
+                </a>
+                <a class="btn btn-success buttoncolor"
+                   href="#/manageflaggedreviews">Flagged Reviews
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container ">
+
+    <!-- Active Users -->
+    <div class="container">
+        <h3><b>Active Users:</b> {{model.userCount}}</h3>
+    </div>
+
+
+
+    <!-- Create User -->
+    <div class="container ">
+
+        <div ng-if="model.createsuccess" class="alert alert-success">
+            {{model.createsuccess}}
+        </div>
+
+        <h4><b>Create User</b></h4>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12 paddedfromtop3">
+                <input type="text"
+                       class="form-control"
+                       placeholder="username"
+                       ng-model="model.username"/>
+            </div>
+
+            <div class="col-md-3  col-sm-12 col-xs-12 paddedfromtop3">
+                <input type="password"
+                       class="form-control"
+                       placeholder="password"
+                       ng-model="model.password"/>
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-xs-12 paddedfromtop3">
+                <select type="string"
+                        class="form-control"
+                        ng-model="model.admin">
+                    <option value="" disabled selected hidden><i>Select Role Type</i></option>
+                    <option value="true">Admin</option>
+                    <option value="false">User</option>
+                </select>
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-xs-12 paddedfromtop3">
+
+                <a ng-click="model.createUser(model.username, model.password, model.admin)"
+                   class="btn btn-block btn-success fa fa-user-plus">    Create
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <p></p>
+    <p></p>
+
+
+    <div class="container pushdownless">
+        <h4 ><b>Current Users</b></h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th>Username</th>
+                    <th>Type</th>
+                    <th>FirstName</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+
+                </tr>
+                </thead>
+
+                <!-- Table Body-->
+                <tbody ng-repeat="user in model.users">
+
+                <tr>
+                    <!--Username-->
+                    <td>
+                        <span ng-if="user.admin=='true'" class="fa fa-lg fa-user-secret"></span>
+                        <span ng-if="user.admin=='false'" class="glyphicon glyphicon-user "></span>
+                        <a class="makeblack"
+                           href="#/user/profile/{{user.username}}">
+                            {{user.username}}</a>
+
+
+                    </td>
+
+                    <td>
+                        <!--{{user.admin}}-->
+
+                        <a ng-if="user.admin=='true'"class="makeblack">
+                            Admin
+                        </a>
+
+                        <a ng-if="user.admin=='false'"class="makeblack">
+                            User
+                        </a>
+                    </td>
+
+                    <!--First Name -->
+                    <td> {{user.firstName}}</td>
+
+
+                    <!--Last Name -->
+                    <td> {{user.lastName}}</td>
+
+                    <!-- Email Name -->
+                    <td> {{user.email}}</td>
+
+
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <!-- Role Manager-->
+    <div class="container pushdown">
+        <h4><b>Admin Role</b></h4>
+        <div ng-if="model.warning" class="alert alert-warning">
+            {{model.warning}}
+        </div>
+        <div ng-if="model.updatedmessage" class="alert alert-success">
+            {{model.updatedmessage}}
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+
+
+
+                <th>Username</th>
+                <th>Admin (Set to true for giving Admin Rights)</th>
+                <th>Update User</th>
+                <th>Delete User</th>
+
+                <tr ng-repeat="user in model.users">
+                    <td>
+                        <span ng-if="user.admin=='true'" class="fa fa-lg fa-user-secret"></span>
+                        <span ng-if="user.admin=='false'" class="glyphicon glyphicon-user "></span>
+                        <a class="makeblack"
+                           href="#/user/profile/{{user.username}}">{{user.username}}</a>
+                    </td>
+
+
+                    <td>
+                        <input type="text"
+                               ng-model="user.admin"
+                               placeholder="true/false"/>
+                    </td>
+
+                    <td>
+                        <a class="fa fa-check-square fa-lg makeblack"
+                           ng-click="model.updateUser(user._id, user)"></a>
+                    </td>
+
+                    <td><a class="fa fa-user-times fa-lg makeblack"
+                           ng-click="model.deleteUser(user._id)"></a>
+                    </td>
+
+
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <p></p>
+    <p></p>
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container-fluid">
+            <p class="navbar-text pull-left">
+                <a  class="mycustomfont" ng-click="model.logout()">
+                    <span class="glyphicon glyphicon-off"></span>
+                </a>
+
+            </p>
+            <p class="navbar-text pull-right">
+
+                <a  class="mycustomfont" href="#/adminconsole">
+                    <span class="fa fa-user-secret fa-lg"></span>
+                </a>
+            </p>
+
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+</div>

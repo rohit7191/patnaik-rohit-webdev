@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MovieZone">
 <head>
     <meta charset="UTF-8">
-    <title>Project Home Page</title>
+
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+    <link rel="icon" type="image/png" href="img/mz">
+    <title>Movie Zone</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <link href="../css/jquery-ui.css" rel="stylesheet"/>
+
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css">
+
+
+
+    <script src="js/jquery.js"></script>
+
+
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="views/admin/controllers/admin-console.controller.client.js"></script>
+    <script src="views/admin/controllers/manage-flaggedreviews.controller.client.js"></script>
+    <script src="views/admin/controllers/manage-users.controller.client.js"></script>
+    <script src="views/admin/controllers/manage-movies.controller.client.js"></script>
+    <script src="views/user/controllers/home.controller.client.js"></script>
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/user/controllers/profile-edit.controller.client.js"></script>
+    <script src="views/user/controllers/user-profile.controller.client.js"></script>
+    <script src="views/common/controllers/search.controller.client.js"></script>
+    <script src="views/common/controllers/movie-info.controller.client.js"></script>
+    <script src="views/common/controllers/movie-default.controller.client.js"></script>
+    <script src="views/common/controllers/movie-review.controller.client.js"></script>
+    <script src="views/common/controllers/cast-info.controller.client.js"></script>
+
+    <!--Services-->
+    <script src="services/tmdbapi.service.client.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <script src="services/movie.service.client.js"></script>
+
 </head>
-<body>
-    <h1>Project Home Page</h1>
+<body >
+<div ng-view></div>
+
 </body>
 </html>

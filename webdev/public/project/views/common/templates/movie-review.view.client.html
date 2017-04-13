@@ -1,0 +1,116 @@
+
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
+                <img class="logo_film"
+                     src="./img/moviezone-logo.jpg">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="navbar-text pull-right">
+                <a class="mycustomfont" href="#/moviedefault"><span class="glyphicon glyphicon-home"> </span></a>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End of Header-->
+
+<!--Body-->
+<div class="container-fluid pushdown">
+    <div class="container-fluid">
+        <!-- Search Box -->
+        <div class="input-group">
+            <input ng-model = "model.movieName"
+                   type="text"
+                   placeholder="Search movie.."
+                   class="form-control ng-pristine ng-valid ng-touched">
+               <span class="input-group-btn ">
+                   <a href ="#/search/{{model.movieName}}"
+                      class="btn btn-info makegray"
+                      type="button">
+                       <span class="glyphicon glyphicon-search"></span>
+                   </a>
+                </span>
+        </div>
+
+    <p></p>
+        <p></p>
+
+    <div class="form-group">
+        <p>
+        <label for="reviewtext">Rate this movie</label>
+        {{model.review.rating}}
+        </p>
+    <input ng-model="model.review.rating"
+            type=range
+            min=0
+            max=5
+            step="0.2"/>
+
+    </div>
+
+
+<div class="form-group">
+    <p><label for="reviewtext">Review:</label></p>
+    <textarea ng-model="model.review.reviewtext"
+           type="text"
+           class="form-control"
+           id="reviewtext"
+           name="title"
+              rows = 4
+           placeholder="What do you think about the movie?"
+           required></textarea>
+
+    <p></p></div>
+
+    <a class="btn btn-success btn-block"
+       ng-click="model.submitRatingReview(model.review, model.movie, model.userName)">Submit</a>
+</div>
+
+</div>
+
+<!-- End of Body -->
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <a ng-if="model.loggedIn" class="mycustomfont" ng-click="model.logout()">
+                <span class="glyphicon glyphicon-off"></span></a>
+
+            <a ng-if="model.notloggedIn" class="mycustomfont"
+               href="#/login">
+                <span><b>Login</b></span>
+            </a>
+        </p>
+        <p class="navbar-text pull-right">
+            <a ng-if="model.loggedIn" class="mycustomfont" href="#/profile">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+
+            <a ng-if="model.notloggedIn" class="mycustomfont"
+               href="#/register">
+                <span><b>Sign Up</b></span>
+            </a>
+        </p>
+
+    </div>
+</nav>
+
+
+
