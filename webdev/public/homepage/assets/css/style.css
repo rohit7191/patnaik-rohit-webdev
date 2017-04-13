@@ -571,9 +571,11 @@ footer {
 		font-size: 3em;
 	}
 	.bigheadline {
-		font-size: 15em;
+        color: white;
+		font-size: 10em;
 	}
 	.subheadline {
+        color: white;
 		font-size: 5em;
 	}
 }
