@@ -4,23 +4,29 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //added re
 var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
+// var googleConfig = {
+//     clientID     : "392809642931-1d55q4j8c70rv3dcm2rgu3f7e3rlvjdr.apps.googleusercontent.com",
+//     clientSecret : "weCeyBhz33SlyfyLKMsmI5M5",
+//     callbackURL  : "https://patnaik-rohit-webdev.herokuapp.com/auth/google/callback"
+// };
+//
+// var facebookConfig = {
+//     clientID     : "272593499854861",
+//     clientSecret : "eab1f680bb0ce926649ff4f016983714",
+//     callbackURL  : "http://127.0.0.1:3000/auth/facebook/callback"
+// };
+
 var googleConfig = {
-    clientID     : "392809642931-1d55q4j8c70rv3dcm2rgu3f7e3rlvjdr.apps.googleusercontent.com",
-    clientSecret : "weCeyBhz33SlyfyLKMsmI5M5",
-    callbackURL  : "http://127.0.0.1:3000/auth/google/callback"
-};
-
-var facebookConfig = {
-    clientID     : "272593499854861",
-    clientSecret : "eab1f680bb0ce926649ff4f016983714",
-    callbackURL  : "http://127.0.0.1:3000/auth/facebook/callback"
-};
-
-/*var googleConfig = {
  clientID     : process.env.GOOGLE_CLIENT_ID,
  clientSecret : process.env.GOOGLE_CLIENT_SECRET,
  callbackURL  : process.env.GOOGLE_CALLBACK_URL
- };*/
+ };
+
+var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+};
 
 module.exports= function(app, models){
     var auth = authorized;

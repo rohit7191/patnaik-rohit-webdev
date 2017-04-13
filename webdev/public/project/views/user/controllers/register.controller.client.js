@@ -9,7 +9,7 @@
 
 
         function register(username, password, firstName, lastName, admin) {
-            var admin = "true";
+            var admin = "false";
             if(vm.myform.$valid == false){
                 vm.error = "Enter the username/password";
                 vm.alert = "* Enter the fields";
