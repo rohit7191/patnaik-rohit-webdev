@@ -13,7 +13,8 @@
             findCastByID: findCastByID
         };
 
-        var apikey = "cd414043d3beefb989e86630d7c9de48";
+        //var apikey = "cd414043d3beefb989e86630d7c9de48";
+        var apikey = process.env.TMDB_API_KEY;
         var baseUrl = "https://api.themoviedb.org/3";
         return api;
 
