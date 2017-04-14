@@ -88,7 +88,7 @@ module.exports = function (app, models) {
                     res.json(movies);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.sendStatus(404).send(error);
                 }
             );
     }
@@ -159,7 +159,6 @@ module.exports = function (app, models) {
                             }
                         }
 
-                    //return movie[0].save();
                     movie[0].save();
                     res.send(200);
 
