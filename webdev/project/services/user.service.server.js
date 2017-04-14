@@ -76,7 +76,7 @@ module.exports= function(app, models){
                         done(null,user);
                     }
                     else {
-                        done("Login error!", null);
+                        done(null, true);
                     }
                 },
                 function(err) {

@@ -18,11 +18,11 @@
                     .then(function (response) {
 
                         var user = response.data;
+
                         if (user._id){
                             $location.url("/profile");
                         } else {
-                           if(user == null)
-                                vm.error = "User not found";
+                                vm.error = "Error! Invalid Credentials";
                         }
                     });
             }
