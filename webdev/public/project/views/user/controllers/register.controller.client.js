@@ -12,8 +12,7 @@
 
         function register(username, password, vpassword, firstName, lastName) {
             var admin = "false";
-            console.log(password);
-            console.log(vpassword);
+
             if(vm.myform.$valid == false) {
                 vm.error = "Enter the username/password";
                 vm.alert = "* Enter the fields";
