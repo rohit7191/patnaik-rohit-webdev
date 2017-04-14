@@ -5,32 +5,36 @@
     function RegisterController($location, UserService) {
         var vm = this;
         vm.register = register;
+        function init(){
 
+        }
+        init();
 
-
-        function register(username, password, firstName, lastName, admin) {
+        function register(username, password, vpassword, firstName, lastName) {
             var admin = "false";
-            if(vm.myform.$valid == false){
+            console.log(password);
+            console.log(vpassword);
+            if(vm.myform.$valid == false) {
                 vm.error = "Enter the username/password";
                 vm.alert = "* Enter the fields";
-                if(vm.myform.password !== vm.myform.vpassword){
-                    vm.pwmatch = "entered passwords do not match!";
-                }
-            }else {
+            }
+            if(password != vpassword) {
+                vm.error = "Password did not match";
+            } else {
                 UserService
-                    .register(username,password, firstName, lastName, admin)
-                    .then(function (response) {
+                    .register(username, password, firstName, lastName, admin)
+                    .then(
+                        function (response) {
                             var user = response.data;
-                            if(user){
+                            if(user) {
                                 $location.url("/profile");
                             }
-
                         },
                         function (err) {
-                            vm.error = err;
-                        });
+                            vm.error = err.data;
+                        }
+                    );
             }
-
         }
 
     }

@@ -29,12 +29,9 @@
 
     </div>
 </nav>
-<!-- End of Header-->
 
-<!--Body-->
 <div class="container-fluid pushdown">
     <div class="container-fluid">
-        <!-- Search Box -->
 
         <p></p>
 
@@ -48,7 +45,8 @@
 
 
     <form novalidate name="model.myform">
-        <label for="username">Username</label>
+        <label for="username">Username</label> <span class="alert-class"
+                                                     ng-show="model.myform.username.$invalid">{{model.alert}}</span>
         <input ng-model="username"
                id="username"
                name="username"
@@ -56,8 +54,7 @@
                type="text"
                class="form-control"
                required/>
-       <span class="alert-class"
-             ng-show="model.myform.username.$invalid">{{model.alert}}</span>
+
 
 
 
@@ -81,7 +78,8 @@
                required/>
 
 
-        <label for="password">Password</label>
+        <label for="password">Password</label><span class="alert-class"
+                                                    ng-show="model.myform.password.$invalid">{{model.error}}</span>
         <input ng-model="password"
                id="password"
                placeholder="Password"
@@ -89,10 +87,10 @@
                type="password"
                class="form-control"
                required/>
-    <span class="alert-class"
-          ng-show="model.myform.password.$invalid">{{model.alert}}</span>
 
-        <label for="vpassword">Verify Password</label>
+
+        <label for="vpassword">Verify Password</label> <span class="alert-class"
+                                                             ng-show="model.myform.vpassword.$invalid">{{model.error}}</span>
         <input ng-model="vpassword"
                id="vpassword"
                name="vpassword"
@@ -101,13 +99,12 @@
                class="form-control"
                required/>
 
-    <span class="alert-class"
-          ng-show="model.myform.vpassword.$invalid">{{model.pwmatch}}</span>
+
 
         <p></p>
 
         <button class="btn btn-primary btn-block"
-                ng-click="model.register(username, password, firstName, lastName)"
+                ng-click="model.register(username, password, vpassword, firstName, lastName)"
                 type="submit">Sign Up</button>
 
     </form>
