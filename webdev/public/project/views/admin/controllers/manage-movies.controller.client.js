@@ -51,7 +51,7 @@
                 .then(function (response) {
                     var addedObject = response.data;
                     if(addedObject){
-                        vm.message= " Review updated";
+                        vm.success= " Review updated";
                     }else{
                         vm.error = "unable to update review";
                     }
